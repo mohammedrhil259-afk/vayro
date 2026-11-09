@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}تم الطلب | سوق{% endblock %}
+{% block body %}
+{% include "_nav.html" %}
+<main class="wrap narrow center">
+  <div class="em big">✅</div>
+  <h2>تم استلام طلبك</h2>
+  <p>شكراً لك! سنبدأ بتجهيز طلبك الآن.</p>
+  <a class="btn" href="{{ url_for('shop') }}">متابعة التسوّق</a>
+</main>
+{% endblock %}

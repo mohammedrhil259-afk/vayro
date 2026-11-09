@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}السلة | سوق{% endblock %}
+{% block body %}
+{% include "_nav.html" %}
+<main class="wrap narrow">
+  <h2>سلة الشراء</h2>
+  {% if rows %}
+    {% for p, q in rows %}
+    <div class="row">
+      <span class="em">{{ p.emoji }}</span>
+      <div><strong>{{ p.name }}</strong><br><small>{{ q }} × {{ p.price }} {{ currency }}</small></div>
+      <b>{{ p.price * q }} {{ currency }}</b>
+      <form method="post" action="{{ url_for('remove', pid=p.id) }}"><button class="link">حذف</button></form>
+    </div>
+    {% endfor %}
+    <div class="total">الإجمالي <b>{{ total }} {{ currency }}</b></div>
+    {% for m in get_flashed_messages() %}<div class="msg">{{ m }}</div>{% endfor %}
+    <div class="pay">
+      <form method="post" action="{{ url_for('checkout', method='card') }}"><button class="btn">ادفع بالبطاقة</button></form>
+      <form method="post" action="{{ url_for('checkout', method='cod') }}"><button class="btn ghost">الدفع عند الاستلام</button></form>
+    </div>
+  {% else %}
+    <p class="empty">السلة فارغة. <a href="{{ url_for('shop') }}">ابدأ التسوّق</a></p>
+  {% endif %}
+</main>
+{% endblock %}

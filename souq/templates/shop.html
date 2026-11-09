@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}المتجر | سوق{% endblock %}
+{% block body %}
+{% include "_nav.html" %}
+<section class="hero">
+  <div>
+    <span class="kicker">عروض اليوم</span>
+    <h2>تسوّق بذكاء، ووفّر أكثر</h2>
+    <p>منتجات مختارة بأسعار بالدينار الليبي وخيارات دفع مرنة.</p>
+    <a class="btn cta" href="{{ url_for('shop', view='offers') }}">شاهد العروض</a>
+  </div>
+  {% include "_flag.html" %}
+</section>
+<main class="wrap">
+  <div class="filters">
+    <a href="{{ url_for('shop') }}" class="{{ 'on' if view=='all' }}">تسوّق</a>
+    <a href="{{ url_for('shop', view='offers') }}" class="{{ 'on' if view=='offers' }}">العروض</a>
+    <a href="{{ url_for('cart') }}">شراء ({{ count }})</a>
+  </div>
+
+  {% for m in get_flashed_messages() %}<div class="msg">{{ m }}</div>{% endfor %}
+
+  <div class="grid">
+    {% for p in products %}
+    <article class="card">
+      <div class="pic">{{ p.emoji }}{% if p.old %}<span class="tag">خصم {{ ((1 - p.price/p.old)*100)|round|int }}٪</span>{% endif %}</div>
+      <h3>{{ p.name }}</h3>
+      <small>{{ p.cat }}</small>
+      <div class="price">{{ p.price }} {{ currency }} {% if p.old %}<s>{{ p.old }}</s>{% endif %}</div>
+      <form method="post" action="{{ url_for('add', pid=p.id) }}"><button class="btn">أضف إلى السلة</button></form>
+    </article>
+    {% endfor %}
+  </div>
+</main>
+{% endblock %}

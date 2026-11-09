@@ -1,0 +1,10 @@
+<header class="nav">
+  <a class="logo" href="{{ url_for('shop') }}">{% include "_flag.html" %}<span>سوق</span></a>
+  <nav>
+    <span class="hi">مرحباً، {{ session.user }}</span>
+    {% if session.admin %}<a href="{{ url_for('admin') }}">الإدارة</a>{% endif %}
+    <a class="cartbtn" href="{{ url_for('cart') }}">🛒 السلة <b>{{ count }}</b></a>
+    <a href="{{ url_for('logout') }}">خروج</a>
+  </nav>
+</header>
+<div class="stripe"></div>
