@@ -7,7 +7,8 @@ from authlib.integrations.flask_client import OAuth
 
 app = Flask(__name__)
 app.secret_key = os.environ.get("SECRET_KEY", "غيّر-هذا-المفتاح")
-DB = "souq.db"
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+DB = os.environ.get("DATABASE_PATH", os.path.join(BASE_DIR, "souq.db"))
 
 # ---------- Google OAuth (اختياري) ----------
 # ضع GOOGLE_CLIENT_ID و GOOGLE_CLIENT_SECRET من console.cloud.google.com
@@ -262,6 +263,8 @@ def admin_delete(pid):
     db().commit()
     return redirect(url_for("admin"))
 
+
+init_db()
+
 if __name__ == "__main__":
-    init_db()
     app.run(debug=True)

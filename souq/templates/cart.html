@@ -7,10 +7,10 @@
   {% if rows %}
     {% for p, q in rows %}
     <div class="row">
-      <span class="em">{{ p.emoji }}</span>
-      <div><strong>{{ p.name }}</strong><br><small>{{ q }} × {{ p.price }} {{ currency }}</small></div>
-      <b>{{ p.price * q }} {{ currency }}</b>
-      <form method="post" action="{{ url_for('remove', pid=p.id) }}"><button class="link">حذف</button></form>
+      <span class="em">{{ p["emoji"] }}</span>
+      <div><strong>{{ p["name"] }}</strong><br><small>{{ q }} × {{ p["price"] }} {{ currency }}</small></div>
+      <b>{{ p["price"] * q }} {{ currency }}</b>
+      <form method="post" action="{{ url_for('remove', pid=p["id"]) }}"><button class="link">حذف</button></form>
     </div>
     {% endfor %}
     <div class="total">الإجمالي <b>{{ total }} {{ currency }}</b></div>

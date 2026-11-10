@@ -23,11 +23,11 @@
   <div class="grid">
     {% for p in products %}
     <article class="card">
-      <div class="pic">{{ p.emoji }}{% if p.old %}<span class="tag">خصم {{ ((1 - p.price/p.old)*100)|round|int }}٪</span>{% endif %}</div>
-      <h3>{{ p.name }}</h3>
-      <small>{{ p.cat }}</small>
-      <div class="price">{{ p.price }} {{ currency }} {% if p.old %}<s>{{ p.old }}</s>{% endif %}</div>
-      <form method="post" action="{{ url_for('add', pid=p.id) }}"><button class="btn">أضف إلى السلة</button></form>
+      <div class="pic">{{ p["emoji"] }}{% if p["old"] %}<span class="tag">خصم {{ ((1 - p["price"]/p["old"])*100)|round|int }}٪</span>{% endif %}</div>
+      <h3>{{ p["name"] }}</h3>
+      <small>{{ p["cat"] }}</small>
+      <div class="price">{{ p["price"] }} {{ currency }} {% if p["old"] %}<s>{{ p["old"] }}</s>{% endif %}</div>
+      <form method="post" action="{{ url_for('add', pid=p["id"]) }}"><button class="btn">أضف إلى السلة</button></form>
     </article>
     {% endfor %}
   </div>
