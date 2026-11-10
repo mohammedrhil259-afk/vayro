@@ -4,10 +4,13 @@ from flask import (Flask, render_template, request, redirect,
                    url_for, session, flash, g)
 from werkzeug.security import generate_password_hash, check_password_hash
 from authlib.integrations.flask_client import OAuth
+from dotenv import load_dotenv
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+load_dotenv(os.path.join(BASE_DIR, ".env"))
 
 app = Flask(__name__)
 app.secret_key = os.environ.get("SECRET_KEY", "غيّر-هذا-المفتاح")
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DB = os.environ.get("DATABASE_PATH", os.path.join(BASE_DIR, "souq.db"))
 
 # ---------- Google OAuth (اختياري) ----------

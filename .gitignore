@@ -1,0 +1,16 @@
+.env
+.env.*
+!.env.example
+client_secret*.json
+*.pem
+*.key
+*.crt
+*.p12
+*.db
+*.sqlite
+*.sqlite3
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.zip
